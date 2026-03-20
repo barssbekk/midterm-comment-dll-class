@@ -228,11 +228,15 @@ public:
 
         while (current) {
             cout << current->data << " ";
-            if (current) {
+            if (current->next) {
                 current = current->next;
+            } else {
+                return;
             }
         }
+        cout << '\n';
     }
+
 };
 
 
