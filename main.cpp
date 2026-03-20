@@ -1,14 +1,18 @@
 #include <iostream>
 using namespace std;
 
+// constants, so we don't have to write everytime, prevent accidental changes, and avoid magic numbers
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
 class DoublyLinkedList {
 private:
+    // each element in the Linkedlist is NODE
+    // private members and accessible inside the class
     struct Node {
-        int data;
-        Node* prev;
-        Node* next;
+        // public members of struct Node, since struct by default is a public
+        int data; // stores the value of the node, int type
+        Node* prev; // pointer to previous node
+        Node* next; // pointer to the next node
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
             data = val;
             prev = p;
