@@ -13,15 +13,18 @@ private:
         int data; // stores the value of the node, int type
         Node* prev; // pointer to previous node
         Node* next; // pointer to the next node
+
+        // Constructor with default parameters, if the user doesn't provide p and n,
+        // then the constructor will assign them to "nullptr" which is default
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val;
-            prev = p;
-            next = n;
+            data = val; // assigns user provided value to node member "data"
+            prev = p; // assigns user provided previous pointer to node member "prev"
+            next = n; // assigns user provided next pointer to node member "next"
         }
     };
 
-    Node* head;
-    Node* tail;
+    Node* head; // private member pointer to first node which is first element
+    Node* tail; // private member pointer to last node which is last element
 
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
