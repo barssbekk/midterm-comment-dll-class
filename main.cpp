@@ -217,11 +217,31 @@ public:
         }
         cout << endl; // new line
     }
+
+    void every_other_element() {
+        Node* current = head;
+
+        if (!current) {
+            cout << "List is empty'\n";
+            return;
+        }
+
+        while (current) {
+            cout << current->data << " ";
+        }
+    }
 };
+
 
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
-
+    DoublyLinkedList myList{};
+    myList.push_back(1);
+    myList.push_back(3);
+    myList.push_back(2);
+    myList.push_back(5);
+    myList.push_back(2);
+    myList.every_other_element();
     return 0;
 }
