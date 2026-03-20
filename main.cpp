@@ -218,23 +218,24 @@ public:
         cout << endl; // new line
     }
 
+    // prints every other elemetns
     void every_other_element() {
-        Node* current = head;
+        Node* current = head; // starts at head
 
         if (!current) {
-            cout << "List is empty'\n";
-            return;
+            cout << "List is empty'\n"; // if list empty
+            return; // exit
         }
 
-        while (current) {
-            cout << current->data << " ";
-            if (current->next) {
-                current = current->next->next;
+        while (current) { // while current points to something
+            cout << current->data << " "; // prints it value
+            if (current->next) { //
+                current = current->next->next; // move 2 steps forward, skip one node
             } else {
-                break;
+                break; // exit
             }
         }
-        cout << '\n';
+        cout << '\n'; // new linee
     }
 };
 
