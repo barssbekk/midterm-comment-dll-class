@@ -27,23 +27,28 @@ private:
     Node* tail; // private member pointer to last node which is last element
 
 public:
+    // Default constructor of the class
+    // where head and tail point to null (empty list)
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    void insert_after(int value, int position) {
-        if (position < 0) {
-            cout << "Position must be >= 0." << endl;
-            return;
+    // insert after a given position where 0 is start
+    void insert_after(int value, int position) { // takes two parameters, so user has to provide them
+        if (position < 0) { // checks if position is invalid
+            cout << "Position must be >= 0." << endl; // if so, prints error message
+            return; // return or "exit" the function
         }
 
-        Node* newNode = new Node(value);
-        if (!head) {
+        Node* newNode = new Node(value); // creates a new node dynamically and stores its address in "newNode"
+        if (!head) { // checks if the list is empty, it's the same as head == nullptr
+            // new node becomes both head and tail, because the list is empty,
+            // and we only have one node in the list
             head = tail = newNode;
-            return;
+            return; // exit the function
         }
 
-        Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
-            temp = temp->next;
+        Node* temp = head; // create a pointer temp that starts at head
+        for (int i = 0; i < position && temp; ++i) // loop to move temp up to the given position
+            temp = temp->next; // move temp to next node using next pointer
 
         if (!temp) {
             cout << "Position exceeds list size. Node not inserted.\n";
