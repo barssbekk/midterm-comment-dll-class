@@ -1,5 +1,5 @@
-#include <iostream>
-using namespace std;
+#include <iostream> // for cout and endl
+using namespace std; // avoids writing std:: for simplicity
 
 // constants, so we don't have to write everytime, prevent accidental changes, and avoid magic numbers
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -77,50 +77,51 @@ public:
         if (!temp) return; // if value not found (points to nothing), exit function
 
         if (temp->prev) // if temp is not the first node
-            temp->prev->next = temp->next; 
+            temp->prev->next = temp->next; // link previous node to next node
         else
-            head = temp->next;
+            head = temp->next; // if temp first node, update head to next node
 
-        if (temp->next)
-            temp->next->prev = temp->prev;
+        if (temp->next) // if temp is not the last node
+            temp->next->prev = temp->prev; // link next node back to previous node
         else
-            tail = temp->prev;
+            tail = temp->prev; // update tail
 
-        delete temp;
+        delete temp; // frees memory
     }
 
+    // deletes node by taking position
     void delete_pos(int pos) {
-        if (!head) {
-            cout << "List is empty." << endl;
-            return;
+        if (!head) { // check if list is empty
+            cout << "List is empty." << endl; // if so, prints this
+            return; // exit
         }
 
-        if (pos == 1) {
-            pop_front();
-            return;
+        if (pos == 1) { // if first node
+            pop_front(); // remove front
+            return; // exit
         }
 
-        Node* temp = head;
+        Node* temp = head; // start from head
 
-        for (int i = 1; i < pos; i++){
-            if (!temp) {
-                cout << "Position doesn't exist." << endl;
-                return;
+        for (int i = 1; i < pos; i++){ // repeats until reaching position
+            if (!temp) { // checks if temp is empty
+                cout << "Position doesn't exist." << endl; // prints it
+                return; // exit
             }
             else
-                temp = temp->next;
+                temp = temp->next; // updates temp to next node
         }
-        if (!temp) {
+        if (!temp) { // check if temp is last node
             cout << "Position doesn't exist." << endl;
             return;
         }
 
-        if (!temp->next) {
-            pop_back();
+        if (!temp->next) { // checks if temp is last node
+            pop_back(); // deletes the last node
             return;
         }
 
-        Node* tempPrev = temp->prev;
+        Node* tempPrev = temp->prev; // deltes 
         tempPrev->next = temp->next;
         temp->next->prev = tempPrev;
         delete temp;
