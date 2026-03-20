@@ -50,33 +50,34 @@ public:
         for (int i = 0; i < position && temp; ++i) // loop to move temp up to the given position
             temp = temp->next; // move temp to next node using next pointer
 
-        if (!temp) {
-            cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
-            return;
+        if (!temp) { // if temp points to nothing then position is out of the list
+            cout << "Position exceeds list size. Node not inserted.\n"; // if condition true, prints error
+            delete newNode; // frees memory to avoid memory leak
+            return; // exit
         }
 
-        newNode->next = temp->next;
-        newNode->prev = temp;
-        if (temp->next)
-            temp->next->prev = newNode;
+        newNode->next = temp->next; // new node points to the node after temp
+        newNode->prev = temp; // new node points to back (previous) to temp
+        if (temp->next) // if temp is not the last node
+            temp->next->prev = newNode; // update the next  node to point back to new node
         else
-            tail = newNode;
-        temp->next = newNode;
+            tail = newNode; // if inserting at end, update tail to new node
+        temp->next = newNode; // updates temp to point to new node
     }
 
+    // deletes the first node that contains the given value
     void delete_val(int value) {
-        if (!head) return;
+        if (!head) return; // if list is empty, nothing to delete, exit
 
-        Node* temp = head;
+        Node* temp = head; // starts from head and stores address of first node
 
-        while (temp && temp->data != value)
-            temp = temp->next;
+        while (temp && temp->data != value) // traverse list until value is found or end when it is reached
+            temp = temp->next; // move forward by using next pointer
 
-        if (!temp) return;
+        if (!temp) return; // if value not found (points to nothing), exit function
 
-        if (temp->prev)
-            temp->prev->next = temp->next;
+        if (temp->prev) // if temp is not the first node
+            temp->prev->next = temp->next; 
         else
             head = temp->next;
 
