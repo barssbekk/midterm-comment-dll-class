@@ -228,6 +228,9 @@ public:
 
         while (current) {
             cout << current->data << " ";
+            if (current) {
+                current = current->next;
+            }
         }
     }
 };
